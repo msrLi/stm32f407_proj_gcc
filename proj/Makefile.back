@@ -1,0 +1,22 @@
+include plat.mk
+THIS_PATH = $(shell pwd)
+THIS_NAME = $(notdir ${THIS_PATH})
+
+CC = ${COMPILE_PREFIX}gcc
+
+OBJ_PATH = obj
+SRCS = $(wildcard *.c)
+OBJS = $(SRCS:.c=.o)
+THIS_OBJ_PATH = ${ITARGE_BUILD_OBJS_PATH}/${THIS_NAME}
+OBJ_SRC = $(addprefix ${THIS_OBJ_PATH}/,${OBJS})
+
+CFLAGS += ${PLAT_CCFLAGS}
+all:${OBJ_SRC}
+
+${OBJ_SRC}:${SRCS}
+	mkdir -p ${THIS_OBJ_PATH}
+	${CC} $(CFLAGS) $(DEFS) $(INCS) -c $< -o $@
+
+.PHONY:clean
+clean:
+	rm -f *.o ${OBJ_SRC} 

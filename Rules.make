@@ -1,0 +1,14 @@
+PLATFORM_TOP_PATH = $(shell pwd)
+# 平台编译代码
+PLATFORM_PATH = ${PLATFORM_TOP_PATH}/proj
+#生成编译文件代码路径 
+ITARGE_BUILD_OBJS_PATH = ${PLATFORM_TOP_PATH}/build
+# 工具链路径
+TOOLCHAIN_PATH = ${PLATFORM_TOP_PATH}/toolchain/gcc-arm-none-eabi-5_4-2016q3
+COMPILE_PREFIX = arm-none-eabi-
+PORTING_INSTALL_DIR = ${TOOLCHAIN_PATH}/arm-none-eabi
+export PLATFORM_PATH ITARGE_BUILD_OBJS_PATH  
+export PORTING_INSTALL_DIR COMPILE_PREFIX
+export PATH	:= ${TOOLCHAIN_PATH}/bin:${PATH}
+
+
